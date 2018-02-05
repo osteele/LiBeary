@@ -43,12 +43,27 @@ class Recommender():
 		for _,row in rec.iterrows(): # A hack to return the first row title and author. It works since we only want one rec
 			return row.Title, row.Author
 
+	def tester(self):
+		t1 = reccer.chooseWhich("Fiction plz!")
+		if not (t1[0] != "Error"): raise AssertionError("Test 1 failed")
+		t2 = reccer.chooseWhich("Gimme a nonfiction!")
+		if not (t2[0] != "Error"): raise AssertionError("Test 2 failed")
+		t3 = reccer.chooseWhich("I want a potato")
+		if not (t3[0] == "Error"): raise AssertionError("Test 3 failed")
+		t4 = reccer.chooseWhich("FICTION")
+		if not (t4[0] != "Error"): raise AssertionError("Test 4 failed")
+		t5 = reccer.chooseWhich("fic")
+		if not (t5[0] == "Error"): raise AssertionError("Test 5 failed")
+		t6 = reccer.chooseWhich("n onfiction") # currently, this will give a fiction rec
+		if not (t6[0] != "Error"): raise AssertionError("Test 6 failed")
+
 if __name__ == '__main__':
 	os.chdir('../docs')
 	reccer = Recommender('primary_list.csv')
-	fic_title, fic_author = reccer.chooseWhich("Fiction plz!")
-	nfic_title, nfic_author = reccer.chooseWhich("Gimme a nonfiction!")
-	er_t, er_a = reccer.chooseWhich("I want a potato")
-	print("Fiction Request:\n\t",fic_title, "by", fic_author)
-	print("Nonfiction Request:\n\t", nfic_title, "by", nfic_author)
-	print("Erroneous Request:\n\t", er_t, "by", er_a)
+	reccer.tester()
+	# fic_title, fic_author = reccer.chooseWhich("Fiction plz!")
+	# nfic_title, nfic_author = reccer.chooseWhich("Gimme a nonfiction!")
+	# er_t, er_a = reccer.chooseWhich("I want a potato")
+	# print("Fiction Request:\n\t",fic_title, "by", fic_author)
+	# print("Nonfiction Request:\n\t", nfic_title, "by", nfic_author)
+	# print("Erroneous Request:\n\t", er_t, "by", er_a)
