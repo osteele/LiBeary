@@ -1,5 +1,5 @@
 """
-Practice receiving and responding to messages (from the Twilio QuickStart)
+Receives SMS messages
 """
 
 # /usr/bin/env python
@@ -19,6 +19,10 @@ def sms_ahoy_reply():
     resp.message("Ahoy! Thanks so much for your message.")
 
     return str(resp)
+
+@app.route('/')
+def hello_world():
+    return "Hello World"
 
 if __name__ == "__main__":
     app.run(debug=True)
