@@ -1,6 +1,4 @@
 """ Contains the LiBeary Class. """
-
-from random_rec import Recommender
 import pandas as pd
 
 class LiBeary():
