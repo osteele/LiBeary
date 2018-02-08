@@ -6,6 +6,7 @@ Receives SMS messages, parses and responds to them based on what they include
 # Download the twilio-python library from twilio.com/docs/libraries/python
 from flask import Flask, request
 import os
+import subprocess
 from twilio.twiml.messaging_response import MessagingResponse, Message
 from twilio.rest import Client
 from libeary import LiBeary
@@ -23,9 +24,10 @@ def inbound_sms():
     resp = MessagingResponse()
     if "request" in body.lower():
         request_body = (body.lower().replace("request ", ""))
-        request_body = request_body.replace(" ", "_")
+        request_body = request_body.replace("\"", "")
         # print(request_body)
-        os.system("python send_sms.py %s %s" % (SLACK_PHONE_NUMBER, request_body))
+        subprocess.run(["python", "send_sms.py", SLACK_PHONE_NUMBER, request_body])
+        #os.system("python send_sms.py %s %s" % (SLACK_PHONE_NUMBER, request_body))
         resp.message('Thanks for requesting a book! Your request has been submitted.')
     elif "recommend" in body.lower():
         book_rec = libeary.makeRecommendation(body)
