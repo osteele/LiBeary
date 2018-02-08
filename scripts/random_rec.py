@@ -39,7 +39,7 @@ class Recommender():
 		and title of the book. """
 		rec = df.sample()
 		for _,row in rec.iterrows(): # A hack to return the first row title and author. It works since we only want one rec
-			return row.Title, row.Author
+			return row.Title, row.Author, row.Nonfiction
 
 	def tester(self):
 		t1 = reccer.chooseWhich("Fiction plz!")
