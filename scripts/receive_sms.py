@@ -8,8 +8,10 @@ from flask import Flask, request
 import os
 from twilio.twiml.messaging_response import MessagingResponse, Message
 from twilio.rest import Client
+from libeary import LiBeary
 
 app = Flask(__name__)
+libeary = LiBeary()
 
 
 @app.route("/sms", methods=['GET', 'POST'])
@@ -20,7 +22,7 @@ def inbound_sms():
     if "request" in body.lower():
         resp.message('Thanks for requesting a book! If it isn\'t already on its way, I\'ll request it immediately.')
     elif "recommend" in body.lower():
-        book_rec = "Moby Dick"
+        book_rec = libeary.makeRecommendation(body)
         resp.message('I recommend %s' % (book_rec))
     else:
         resp.message('Sorry, say that again?')
