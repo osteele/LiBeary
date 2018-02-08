@@ -31,10 +31,8 @@ class Recommender():
 		database """
 		if "nonfiction" in userString.lower():
 			return self.generateRandom(self.nfic)
-		elif "fiction" in userString.lower():
-			return self.generateRandom(self.fic)
 		else:
-			return "Error", "enter fiction or nonfiction"
+			return self.generateRandom(self.fic)
 
 	def generateRandom(self, df):
 		""" Given a dataframe, returns the name
