@@ -8,9 +8,9 @@ import os
 import click
 from twilio.rest import Client
 
-account_sid = "AC7f89127ce345d9cac1ee5139e0357ba8"
-auth_token = "6430dedf84a61639d01e54e5c868fb80"
-from_number = "+16173963238"
+account_sid = os.getenv('TWILIO_ACCOUNT_SID')
+auth_token = os.getenv('TWILIO_AUTH_TOKEN')
+from_number = os.getenv('TWILIO_PHONE_NUMBER')
 
 PHONE_NUMBER_RE = re.compile(r'^\+1\d{10}$')
 PHONE_NUMBER_EXAMPLE = '+161723351010'

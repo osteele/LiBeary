@@ -100,3 +100,7 @@ ENV/
 # mypy
 .mypy_cache/
 bear-secrets.txt
+
+#Specific to LiBeary
+.envrc
+secrets.txt
