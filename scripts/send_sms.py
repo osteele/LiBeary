@@ -1,5 +1,7 @@
 """
-Practice getting messages sent via the Twilio REST API (from the Twilio QuickStart)
+Kaitlyn's script will parse the received SMS that came in through receive_sms.py, then send
+it to our Slack bot by calling this script with the Slack phone number and whatever message
+needs to be sent.
 """
 
 import re
