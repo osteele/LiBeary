@@ -27,8 +27,8 @@ def inbound_sms():
     if "request" in body.lower():
         #remove the word "request" in whatever form, as well as quotes around the title
         request_body = body.replace("request ", "")
-        request_body = body.replace("Request ", "")
-        request_body = body.replace("REQUEST ", "")
+        request_body = request_body.replace("Request ", "")
+        request_body = request_body.replace("REQUEST ", "")
         request_body = request_body.replace("\"", "")
         #call the script send_sms.py
         subprocess.call(["python", "send_sms.py", SLACK_PHONE_NUMBER, request_body])
