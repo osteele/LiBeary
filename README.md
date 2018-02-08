@@ -12,12 +12,7 @@ Setup:
 
 Create a bear-secrets.txt file containing the following: 
 
-`# Copy this file to .envrc, and edit your assigned phone number and credentials
-# into it.
-# Each time you open a new terminal, run `source .envrc`.
-# On Windows, run `setx MQTT_URL mqtt://…` etc. instead.
-# Pro Tip: Automate this by installing direnv https://direnv.net/.
-export MQTT_URL='mqtt://djdnhvdd:PAevqYVXbfbUDzF0Xwe245jOAa37AzlF@termite.rmq.cloudamqp.com:1883/djdnhvdd'
+`export MQTT_URL='mqtt://djdnhvdd:PAevqYVXbfbUDzF0Xwe245jOAa37AzlF@termite.rmq.cloudamqp.com:1883/djdnhvdd'
 export TWILIO_ACCOUNT_SID='<your account>'
 export TWILIO_AUTH_TOKEN='<your authorization token>'
 export TWILIO_PHONE_NUMBER='<your twilio phone number in E.164 format>'
