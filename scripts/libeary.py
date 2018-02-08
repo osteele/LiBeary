@@ -10,21 +10,6 @@ class LiBeary():
 
 	def __init__(self):
 		self.reccer = Recommender("../docs/primary_list.csv")
-		self.running = True
-
-	def newMessage(self, message):
-		""" Given a message, determines whether the
-		texter desires a recommendation or to make
-		a book request. Calls the appropriate method.
-
-		input - String containing the text message body
-		"""
-		# OUTDATED
-		message = message.strip()
-		if message[:8].lower() == "request:":
-			return self.submitRequest(message[8:].strip())
-		else:
-			return self.makeRecommendation(message)
 
 	def submitRequest(self, message, num_to_send_to):
 		""" Given a text, messages the text to the
@@ -44,14 +29,5 @@ class LiBeary():
 		bear_statement = title + " by " + author
 		return bear_statement
 
-	def run(self):
-		""" Loops until we quit. Mostly testing. """
-		# NOT USED
-		while self.running:
-			message = input("This is DEFINITELY a text message: ")
-			if message in ['x', 'exit', 'quit']: break
-			self.newMessage(message)
-
 if __name__ == '__main__':
 	libeary = LiBeary()
-	libeary.run()
