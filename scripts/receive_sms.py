@@ -11,24 +11,24 @@ from twilio.rest import Client
 
 app = Flask(__name__)
 
-ACCOUNT_SID = os.getenv('TWILIO_ACCOUNT_SID')
-AUTH_TOKEN = os.getenv('TWILIO_AUTH_TOKEN')
-PHONE_NUMBER = os.getenv('TWILIO_PHONE_NUMBER')
-client = Client(ACCOUNT_SID, AUTH_TOKEN)
 
 @app.route("/sms", methods=['GET', 'POST'])
 def inbound_sms():
     body = request.values.get('Body', None)
 
     resp = MessagingResponse()
+    if "request" in body.lower():
+        resp.message('Thanks for requesting a book! If it isn\'t already on its way, I\'ll request it immediately.')
+    elif "recommend" in body.lower():
+        book_rec = "Moby Dick"
+        resp.message('I recommend %s' % (book_rec))
+    else:
+        resp.message('Sorry, say that again?')
+
     print(body) #prints out the message body!!!
 
     return str(resp)
-    
 
-# @app.route('/')
-# def hello_world():
-#     return "Hello World"
 
 if __name__ == "__main__":
     app.run(debug=True)
