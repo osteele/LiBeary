@@ -1,7 +1,7 @@
 """
-Kaitlyn's script will parse the received SMS that came in through receive_sms.py, then send
-it to our Slack bot by calling this script with the Slack phone number and whatever message
-needs to be sent.
+This script can be called from terminal with two arguments: phone number and message body.
+It sends the message from our Twilio number to the argument phone number.
+Modified from send_sms_message.py in bear-as-a-service
 """
 
 import re
@@ -18,7 +18,6 @@ PHONE_NUMBER_RE = re.compile(r'^\+1\d{10}$')
 PHONE_NUMBER_EXAMPLE = '+161723351010'
 
 @click.command()
-# When running this from terminal, follow run command with these arguments
 @click.argument('to_number')
 @click.argument('message_body', default='hello')
 
