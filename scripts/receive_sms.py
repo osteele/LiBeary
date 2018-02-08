@@ -1,5 +1,7 @@
 """
-Receives SMS messages, parses and responds to them based on what they include
+Receives SMS messages sent to our Twilio phone number
+Parses and responds to them based on what they include
+Modified from the Twilio QuickStart
 """
 
 # /usr/bin/env python
@@ -20,22 +22,22 @@ SLACK_PHONE_NUMBER = os.getenv('SLACK_PHONE_NUMBER')
 @app.route("/sms", methods=['GET', 'POST'])
 def inbound_sms():
     body = request.values.get('Body', None)
-
     resp = MessagingResponse()
+
     if "request" in body.lower():
-        request_body = (body.lower().replace("request ", ""))
+        #remove the word "request" in whatever form, as well as quotes around the title
+        request_body = body.replace("request ", "")
+        request_body = body.replace("Request ", "")
+        request_body = body.replace("REQUEST ", "")
         request_body = request_body.replace("\"", "")
-        # print(request_body)
-        subprocess.run(["python", "send_sms.py", SLACK_PHONE_NUMBER, request_body])
-        #os.system("python send_sms.py %s %s" % (SLACK_PHONE_NUMBER, request_body))
+        #call the script send_sms.py
+        subprocess.call(["python", "send_sms.py", SLACK_PHONE_NUMBER, request_body])
         resp.message('Thanks for requesting a book! Your request has been submitted.')
     elif "recommend" in body.lower():
         book_rec = libeary.makeRecommendation(body)
         resp.message('I recommend %s' % (book_rec))
     else:
         resp.message('Sorry, say that again?')
-
-    # print(body) #prints out the message body!!!
 
     return str(resp)
 
