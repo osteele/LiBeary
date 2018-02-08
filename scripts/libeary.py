@@ -3,9 +3,10 @@ import pandas as pd
 
 class LiBeary():
 	""" Contains a recommender to give random
-	recommendations to the texter. Also will
-	message the library's book request slack
-	when a request for a new book is sent. """
+	recommendations to the texter. Currently
+	just a wrapper, but built to be easy to 
+	expand in the future.
+	"""
 
 	def __init__(self):
 		self.reccer = Recommender("../docs/primary_list.csv")
