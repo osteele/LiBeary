@@ -8,6 +8,7 @@ Modified from the Twilio QuickStart
 # Download the twilio-python library from twilio.com/docs/libraries/python
 from flask import Flask, request
 import os
+import os.environ
 import subprocess
 from twilio.twiml.messaging_response import MessagingResponse, Message
 from twilio.rest import Client
@@ -18,6 +19,10 @@ app = Flask(__name__)
 libeary = LiBeary()
 
 SLACK_PHONE_NUMBER = os.getenv('SLACK_PHONE_NUMBER')
+
+#sets up port numbers for Heroku deployment
+HOST = '0.0.0.0' if 'PORT' in os.environ else '127.0.0.1'
+PORT = int(os.environ.get('PORT', 5000)))
 
 @app.route("/sms", methods=['GET', 'POST'])
 def inbound_sms():
@@ -43,4 +48,4 @@ def inbound_sms():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host = HOST, port = PORT)
