@@ -1,5 +1,9 @@
 ## Project LiBeary ReadMe
 
+## Deployment branch only: app is stable (meaning that the flask app is activated) and hosted on heroku: https://team-libeary.herokuapp.com/
+
+deployment branch does not currently run the service, meaning that messaging the twilio number still does nothing
+
 **Team Members**: Celina Bekins, Kaitlyn Keil, Mackenzie Frackleton
 
 *Project Vision*: The LiBeary helps the Olin Library enable students to find new, interesting books in the library collection. Students only need to ask their local bear via text what it recommends, and a book title will be texted back to them. Students may also request books by texting the bear, which will message the Olin Library Slack account.
