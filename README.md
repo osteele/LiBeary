@@ -2,11 +2,11 @@
 
 **Team Members**: Celina Bekins, Kaitlyn Keil, Mackenzie Frackleton
 
-Project Vision: The LiBeary is a way for the Olin Library to enable students to find new, interesting books in the library collection. Students only need to ask their local bear via text what it recommends, and a book will be texted back to them. 
+*Project Vision*: The LiBeary helps the Olin Library enable students to find new, interesting books in the library collection. Students only need to ask their local bear via text what it recommends, and a book title will be texted back to them. Students may also request books by texting the bear, which will message the Olin Library Slack account.
 
-Code and contributions: We based this project off of Olin Library's bear-as-a-service with send_sms.py and their Twilio connections and accounts. This is a flask application which communicates with Twilio via ngrok. 
+*Code and contributions*: We based this project off of Olin Library's bear-as-a-service with send_sms.py and their Twilio connections and accounts. This is a Flask application which communicates with Twilio via ngrok.
 
-Requirements: Twilio, flask, and pandas and a slackbot to post to desired slack account.
+*Requirements*: Twilio (install), a Twilio account/phone number, Flask, and pandas, as well as a slackbot to post to the desired Slack account.
 
 ### Setup
 
@@ -28,14 +28,20 @@ If in Linux/macOS, execute `source bear-secrets.txt`. Windows: `setx NAME value`
 
 Run `pip3 install -r requirements.txt`
 
+Inside `docs/`, create a csv file called `primary_list.csv` which contains a column called "Author", "Title", and "Nonfiction". "Nonfiction" should contain 1 if the book is nonfiction and a 0 otherwise. Populate this with desired titles. This is your book database.
+
 `cd scripts` and run `python receive_sms.py`
 
-Inside `docs/`, create a csv file called `primary_list.csv` which contains a column called "Author", "Title", and "Nonfiction". "Nonfiction" should contain 1 if the book is nonfiction and a 0 otherwise. Populate this with desired titles. This is your book database.
+Open a new terminal and run `./ngrok http 5000`
+
+Copy the forwarding URL. Go to your Twilio dashboard, then go to configure your phone number. Under "Messaging," make sure that "Configure with" is set to Webhooks/TwiML Bins, then paste your URL in the "A Message Comes In" field with the format `{your URL}/sms`.
 
 ### Running
 
-Once all requirements are installed, run 'python receive_sms.py'. While this is running, messages sent to the associated Twilio number will go to the bear. If the message contains the word 'recommend', the bear will recommend a book. If the message also contains the word 'nonfiction', the book recommended will be a nonfiction book from the compiled database. If the message does not contain the 'nonfiction' specification, a fiction book will be recommended.
+Keep the two terminals running `receive_sms.py` and `ngrok` open. While these are running, messages sent to the associated Twilio number will go to the bear. If the message contains the word 'recommend', the bear will recommend a book. If the message also contains the word 'nonfiction', the book recommended will be a nonfiction book from the compiled database. If the message does not contain the 'nonfiction' specification or if it contains a 'fiction' specification, a fiction book will be recommended.
 
-receive_sms.py receives a message using Twilio's REST API & ngrok. The sender receives an SMS response based on the message they send. Also, the inbound is printed to the terminal.
+For example, 'recommend nonfiction' will respond with a nonfiction book, whereas 'recommend me a good book!' will give a fiction title.
 
-send_sms.py will send a message from the bear. When a message containing the word 'request' is sent to the bear, the requested book will be forwarded to the library Slack account in order to request the book. A confimation message will also be sent to the original messenger.
+Requests are made by sending a message in the format of 'request <book title>'. This will then forward the book title (and anything in the message besides 'request') to the slackbot to be posted. A confirmation will be sent to the original messenger.
+
+Messages that do not fit this format will receive a response message that asks, 'Sorry, say that again?'
