@@ -9,7 +9,7 @@ class LiBeary():
 	when a request for a new book is sent. """
 
 	def __init__(self):
-		self.reccer = Recommender("../docs/primary_list.csv")
+		self.reccer = Recommender("primary_list.csv")
 
 	def submitRequest(self, message, num_to_send_to):
 		""" Given a text, messages the text to the
