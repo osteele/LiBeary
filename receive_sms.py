@@ -8,7 +8,6 @@ Modified from the Twilio QuickStart
 # Download the twilio-python library from twilio.com/docs/libraries/python
 from flask import Flask, request
 import os
-import os.environ
 import subprocess
 from twilio.twiml.messaging_response import MessagingResponse, Message
 from twilio.rest import Client
