@@ -22,7 +22,7 @@ SLACK_PHONE_NUMBER = os.getenv('SLACK_PHONE_NUMBER')
 
 #sets up port numbers for Heroku deployment
 HOST = '0.0.0.0' if 'PORT' in os.environ else '127.0.0.1'
-PORT = int(os.environ.get('PORT', 5000)))
+PORT = int(os.environ.get('PORT', 5000))
 
 @app.route("/sms", methods=['GET', 'POST'])
 def inbound_sms():
