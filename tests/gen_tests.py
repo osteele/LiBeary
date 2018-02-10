@@ -1,5 +1,6 @@
 import os
 import sys
+import pytest
 
 from unittest.mock import MagicMock, patch  # noqa: I001
 
@@ -9,7 +10,7 @@ from scripts.libeary import *
 
 def test_recommend():
 	""" Tests the Recommender class """
-	rec = Recommender("../docs/primary_list.csv")
+	rec = Recommender("docs/primary_list.csv")
 	t1 = rec.chooseWhich("recommend fiction")
 	assert (isinstance(t1[0], str) and isinstance(t1[1], str) and t1[2]!=1)
 	t2 = rec.chooseWhich("recommend nonfiction")
@@ -19,7 +20,7 @@ def test_recommend():
 
 def test_wrapper():
 	""" Tests the LiBeary wrapper class for general proper formatting """
-	libear = LiBeary();
+	libear = LiBeary("docs/primary_list.csv");
 	t1 = libear.makeRecommendation("recommend fiction")
 	assert (isinstance(t1, str) and " by " in t1)
 	t2 = libear.makeRecommendation("recommend nonfiction")
@@ -27,6 +28,6 @@ def test_wrapper():
 	t3 = libear.makeRecommendation("recommend")
 	assert (isinstance(t3, str) and " by " in t3)
 
-if __name__ == '__main__':
-	test_recommend()
-	test_wrapper()
+# if __name__ == '__main__':
+# 	test_recommend()
+# 	test_wrapper()

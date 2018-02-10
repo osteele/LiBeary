@@ -8,8 +8,8 @@ class LiBeary():
 	expand in the future.
 	"""
 
-	def __init__(self):
-		self.reccer = Recommender("../docs/primary_list.csv")
+	def __init__(self, db_file = "../docs/primary_list.csv"):
+		self.reccer = Recommender(db_file)
 
 	def makeRecommendation(self, message):
 		""" Given a text, gets a recommendation

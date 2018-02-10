@@ -7,5 +7,9 @@ twilio~=6.10.1
 pandas~=0.18.1
 ngrok~=2.2.8
 
+# Testing
+pytest~=3.2.2
+pytest-watch
+
 # Example gateway
 profanityfilter~=2.0.3
