@@ -8,9 +8,9 @@ We also didn't work together as a team very often, which had its upsides and its
 
 #### Mackenzie: Deployment
 
-	Here I will submit a write up of deployment.
+Here I will submit a write up of deployment.
   
-	Basically I followed [John Kagga’s tutorial](https://medium.com/@johnkagga/deploying-a-python-flask-app-to-heroku-41250bda27d0).
+Basically I followed [John Kagga’s tutorial](https://medium.com/@johnkagga/deploying-a-python-flask-app-to-heroku-41250bda27d0).
 
 And then troubleshooted 
 
