@@ -45,3 +45,7 @@ For example, 'recommend nonfiction' will respond with a nonfiction book, whereas
 Requests are made by sending a message in the format of 'request <book title>'. This will then forward the book title (and anything in the message besides 'request') to the slackbot to be posted. A confirmation will be sent to the original messenger.
 
 Messages that do not fit this format will receive a response message that asks, 'Sorry, say that again?'
+
+### What Next
+
+Next steps include working on a database connection (which should include formal system of storing books); expanding the recommend database to the new acquisitions collection; including a second db for book request so that only the first request posts to slack and the number of requests is stored in the database. An optional reach would add voice support.
