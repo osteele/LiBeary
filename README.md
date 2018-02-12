@@ -2,8 +2,6 @@
 
 ## Deployment branch only: app is stable (meaning that the flask app is activated) and hosted on heroku: https://team-libeary.herokuapp.com/
 
-deployment branch does not currently run the service, meaning that messaging the twilio number still does nothing
-
 **Team Members**: Celina Bekins, Kaitlyn Keil, Mackenzie Frackleton
 
 *Project Vision*: The LiBeary helps the Olin Library enable students to find new, interesting books in the library collection. Students only need to ask their local bear via text what it recommends, and a book title will be texted back to them. Students may also request books by texting the bear, which will message the Olin Library Slack account.
@@ -14,29 +12,28 @@ deployment branch does not currently run the service, meaning that messaging the
 
 ### Setup
 
-Create a bear-secrets.txt file containing the following: 
+Follow the steps in [John Kagga’s tutorial](https://medium.com/@johnkagga/deploying-a-python-flask-app-to-heroku-41250bda27d0) to deploy the application on Heroku.
+
+Set the config files to the following: 
 
 ~~~~
-export MQTT_URL='mqtt://djdnhvdd:PAevqYVXbfbUDzF0Xwe245jOAa37AzlF@termite.rmq.cloudamqp.com:1883/djdnhvdd'
 
-export TWILIO_ACCOUNT_SID='<your account>'
+TWILIO_ACCOUNT_SID=<your account>
 
-export TWILIO_AUTH_TOKEN='<your authorization token>'
+TWILIO_AUTH_TOKEN=<your authorization token>
 
-export TWILIO_PHONE_NUMBER='<your twilio phone number in E.164 format>'
+TWILIO_PHONE_NUMBER=<your twilio phone number in E.164 format>
 
-export SLACK_PHONE_NUMBER='<your slackbot phone number in E.164 format>'`
+SLACK_PHONE_NUMBER=<your slackbot phone number in E.164 format>
 ~~~~
 
 If in Linux/macOS, execute `source bear-secrets.txt`. Windows: `setx NAME value` for each export.
 
 Run `pip3 install -r requirements.txt`
 
-Inside `docs/`, create a csv file called `primary_list.csv` which contains a column called "Author", "Title", and "Nonfiction". "Nonfiction" should contain 1 if the book is nonfiction and a 0 otherwise. Populate this with desired titles. This is your book database.
+Create a csv file called `primary_list.csv` which contains a column called "Author", "Title", and "Nonfiction". "Nonfiction" should contain 1 if the book is nonfiction and a 0 otherwise. Populate this with desired titles. This is your book database.
 
 `cd scripts` and run `python receive_sms.py`
-
-Open a new terminal and run `./ngrok http 5000`
 
 Copy the forwarding URL. Go to your Twilio dashboard, then go to configure your phone number. Under "Messaging," make sure that "Configure with" is set to Webhooks/TwiML Bins, then paste your URL in the "A Message Comes In" field with the format `{your URL}/sms`.
 
