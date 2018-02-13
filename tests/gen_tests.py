@@ -27,7 +27,3 @@ def test_wrapper():
 	assert (isinstance(t2, str) and " by " in t2)
 	t3 = libear.makeRecommendation("recommend")
 	assert (isinstance(t3, str) and " by " in t3)
-
-# if __name__ == '__main__':
-# 	test_recommend()
-# 	test_wrapper()
