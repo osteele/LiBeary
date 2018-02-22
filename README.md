@@ -10,7 +10,7 @@
 
 ### Setup
 
-Create a bear-secrets.txt file containing the following: 
+Create a bear-secrets.txt file containing the following:
 
 ~~~~
 export MQTT_URL='mqtt://djdnhvdd:PAevqYVXbfbUDzF0Xwe245jOAa37AzlF@termite.rmq.cloudamqp.com:1883/djdnhvdd'
@@ -28,7 +28,7 @@ If in Linux/macOS, execute `source bear-secrets.txt`. Windows: `setx NAME value`
 
 Run `pip3 install -r requirements.txt`
 
-Inside `docs/`, create a csv file called `primary_list.csv` which contains a column called "Author", "Title", and "Nonfiction". "Nonfiction" should contain 1 if the book is nonfiction and a 0 otherwise. Populate this with desired titles. This is your book database.
+Inside `data/`, create a csv file called `primary_list.csv` which contains a column called "Author", "Title", and "Nonfiction". "Nonfiction" should contain 1 if the book is nonfiction and a 0 otherwise. Populate this with desired titles. This is your book database.
 
 `cd scripts` and run `python receive_sms.py`
 
